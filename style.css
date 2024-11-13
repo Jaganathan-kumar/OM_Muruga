@@ -39,6 +39,8 @@ ul>li{
 .filter-btn{
     margin:10px;
     cursor: pointer;
+    background-color: gold;
+    
 }
 .rescontainer {
     width: 239px;
@@ -52,7 +54,19 @@ ul>li{
     background-color: rgb(216, 216, 216);
 }
 .search{
+    display:flex;
     border: 2px solid black;
+    background-color: black;
+    justify-content: space-between;
+}
+.search-logo{
+    cursor: pointer;
+    background-color: gold;
+    color: rgb(0, 0, 0);
+    border: 1px solid;
+}
+.search-btn{
+    margin-top: 3px;
 }
 .res-logo{
     width:100%;
@@ -102,5 +116,27 @@ ul>li{
 }
 .down-logo{
     height: 50px;
+}
+.search-bar{
+    height: 50px;
+    width: 100%;
+    background-color: rgb(212, 218, 218);
+}
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.shimmer-cart{
+    height: 400px;
+    width: 250px;
+    background-color: rgb(212, 218, 218);
+    width: 239px;
+    border-radius: 5px;
+    margin: 14px;
+ 
+}
+.login-btn{
+    padding: 10px 20px;
+    cursor: pointer;
 }
     
