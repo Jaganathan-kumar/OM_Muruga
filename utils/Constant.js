@@ -4,6 +4,8 @@ export const APPLE_DOWN_LOGO ="https://b.zmtcdn.com/data/webuikit/9f0c85a5e33adb
 
 export const PLAY_STORE_URL ="https://b.zmtcdn.com/data/webuikit/23e930757c3df49840c482a8638bf5c31556001144.png";
 
+export const MENU_IMG ="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/"
+
 export const MIND_IMG="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/";
 
 export  const MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9821555&lng=80.1641598&restaurantId=";

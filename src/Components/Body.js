@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
-import Restaurantcard from "./Restaurantcard";
+import Restaurantcard, {withOfferLabel} from "./Restaurantcard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../../utils/useOnlineStatus";
 
 
 const Body = () =>{
 
     const [ListofRestaurant, setListofRestaurant] = useState([]);
     const [filteredRestaurant, setFilteredRestaurant]= useState([]);
+
+
+ 
     
 
 
     const [searchText, setSearchText] = useState("");
+    const onlineStatus = useOnlineStatus;
+    const offerLabel = withOfferLabel(Restaurantcard);
 
     useEffect(()=>{
         fetchData();
@@ -22,7 +28,9 @@ const Body = () =>{
     
         const json = await Data.json();
 
-        console.log(json);
+
+
+        
 
 //optional Chaning method (?)
         setListofRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -75,30 +83,26 @@ const Body = () =>{
     //     }
     
     // ]
+
+    if(onlineStatus === false) return <h1>Looks like offline, please check the internet!!!!</h1>
     
 
     return ListofRestaurant.length === 0? (<Shimmer />) : (
-        <div className="body">
-            <div className="search">
+        <div className="bg-gradient-to-br from-pink-200 via-pink-400 to-pink-600">
+            <div className=" flex justify-between p-4">
                 <div className="search-btn">
-                <input type="text" name="Search" id="search" placeholder="Search" 
+                <input type="text" name="Search" className="  w-96 border-2 p-1 border-pink-500  " placeholder="Search" 
                 value={searchText} 
                 onChange={(e)=>{
                     setSearchText(e.target.value);
-
                 }}/>
-                <button className="search-logo" onClick={()=>{
-
+                <button className="bg-pink-700 text-pink-200 border-2 p-1 font-bold" onClick={()=>{
                     const filteredRestaurant = ListofRestaurant.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()));
                     setFilteredRestaurant(filteredRestaurant)
-
-
-
-
                     console.log(searchText)
                 }}>Search</button>
                 </div>
-                <button className="filter-btn" 
+                <button className="bg-pink-700 p-1 text-pink-200 font-bold rounded-lg" 
                 onClick={()=>{
                     const filteredList = ListofRestaurant.filter(
                     (res)=>res.info.avgRating>4.5
@@ -107,13 +111,15 @@ const Body = () =>{
                     }} >Top Rated Hotels</button>
             </div>
             
-            <div className="card">
+            <div className="flex flex-wrap p-4 ">
             {
-                filteredRestaurant.map((restaurant)=>(
+                filteredRestaurant.map((restaurant)=>( 
                <Link
                key={restaurant.info.id}
                to={"/restaurant/"+restaurant.info.id}> 
-               <Restaurantcard  resData={restaurant}/>
+
+               {restaurant.info.header ? (<offerLabel resData={restaurant} />) : (<Restaurantcard  resData={restaurant}/>)}
+               
                </Link>))
             }
             
